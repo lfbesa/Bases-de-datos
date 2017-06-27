@@ -11,7 +11,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask('flaskr')
     return app
 
 app = create_app()
