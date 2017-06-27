@@ -17,7 +17,7 @@ def create_app():
 app = create_app()
 
 # REPLACE WITH YOUR DATABASE NAME
-MONGODATABASE = "myDatabase"
+MONGODATABASE = "test"
 MONGOSERVER = "localhost"
 MONGOPORT = 27017
 client = MongoClient(MONGOSERVER, MONGOPORT)
@@ -52,7 +52,7 @@ def home():
 @app.route("/mongo")
 def mongo():
     query = request.args.get("query")
-    results = eval('mongodb.'+query)
+    results = eval('mongodb.'+"escuchas.find()")
     results = json_util.dumps(results, sort_keys=True, indent=4)
     if "find" in query:
         return render_template('mongo.html', results=results)
