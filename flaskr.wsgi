@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-activate_this = '/var/www/flaskr/venv/bin/activate_this.py'
+activate_this = '/var/www/flaskr/flaskr/__init__.py'
 with open(activate_this) as file_:
-exec(file_.read(), dict(__file__=activate_this))
+	exec(file_.read(), dict(__file__=activate_this))
 import sys
 import logging
 
