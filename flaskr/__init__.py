@@ -59,7 +59,7 @@ def mongo():
     else:
         return "ok"
 
-@app.route("/fecha")
+@app.route("/fecha", methods=['GET', 'POST'])
 def fecha():
     fecha = request.args.get("fecha")
     results = eval('mongodb.escuchas.find({fecha:'+fecha+'}, {numero:1}).pretty()'
