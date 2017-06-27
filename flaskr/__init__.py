@@ -59,6 +59,16 @@ def mongo():
     else:
         return "ok"
 
+@app.route("/fecha")
+def fecha():
+    fecha = request.args.get("fecha")
+    results = eval('mongodb.escuchas.find({fecha:'+fecha+'}, {numero:1}).pretty()'
+    results = json_util.dumps(results, sort_keys=True, indent=4)
+    if "find" in query:
+        return render_template('mongo.html', results=results)
+    else:
+        return "ok"
+
 
 @app.route("/postgres")
 def postgres():
