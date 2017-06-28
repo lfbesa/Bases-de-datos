@@ -76,9 +76,9 @@ def numero():
 @app.route("/palabra", methods=['GET', 'POST'])
 def palabra():
     palabra = request.args.get("palabra")
-    results = mongodb.escuchas.find({"fecha":fecha},{"numero":1})
+    mongodb.escuchas.createindex({"contenido":"texto"})
+    results = mongodb.escuchas.find({$text:{$search:palabra}},{})
     results = json_util.dumps(results, sort_keys=True, indent=4)
-    return results
 
 @app.route("/postgres")
 def postgres():
