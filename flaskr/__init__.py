@@ -71,7 +71,7 @@ def fecha():
 def numero():
     numero = request.args.get("numero")
     k = int(request.args.get("k"))
-    results = mongodb.escuchas.find({"numero":numero},{"contenido":1}).limit(k)
+    results = mongodb.escuchas.find({"numero":numero},{"contenido":1}).sort("fecha",-1).limit(k)
     results = json_util.dumps(results, sort_keys=True, indent=4)
     return results
 
