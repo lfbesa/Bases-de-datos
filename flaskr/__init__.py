@@ -69,8 +69,7 @@ def fecha():
 @app.route("/numero", methods=['GET', 'POST'])
 def numero():
     numero = request.args.get("numero")
-    numero, k = numero.split(",")
-    results = mongodb.escuchas.find({"numero":numero},{"contenido":1}).sort({"fecha":-1}).limit(int(k)
+    results = mongodb.escuchas.find({"numero":numero},{"contenido":1}).sort({"fecha":-1}).limit(1)
     results = json_util.dumps(results, sort_keys=True, indent=4)
     return results
 
