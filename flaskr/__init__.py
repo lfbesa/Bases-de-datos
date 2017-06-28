@@ -64,7 +64,22 @@ def fecha():
     fecha = request.args.get("fecha")
     results = mongodb.escuchas.find({"fecha":fecha},{"numero":1})
     results = json_util.dumps(results, sort_keys=True, indent=4)
-    return render_template('mongo.html', results=results)
+    return results
+
+@app.route("/numero", methods=['GET', 'POST'])
+def numero():
+    numero = request.args.get("numero")
+    numero, k = numero.split(",")
+    results = mongodb.escuchas.find({"numero":numero},{"contenido":1}).sort({"fecha":-1}).limit(int(k)
+    results = json_util.dumps(results, sort_keys=True, indent=4)
+    return results
+
+@app.route("/fecha", methods=['GET', 'POST'])
+def fecha():
+    fecha = request.args.get("fecha")
+    results = mongodb.escuchas.find({"fecha":fecha},{"numero":1})
+    results = json_util.dumps(results, sort_keys=True, indent=4)
+    return results
    
 
 @app.route("/postgres")
