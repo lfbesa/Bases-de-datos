@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 # -*- coding: latin-1 -*-
 import os
@@ -76,8 +77,7 @@ def numero():
 @app.route("/palabra", methods=['GET', 'POST'])
 def palabra():
     palabra = request.args.get("palabra")
-    mongodb.escuchas.createIndex({"contenido":"text"})
-    results = mongodb.escuchas.find({'$text':{'$search':palabra}},{})
+    results = mongodb.escuchas.find({'$text':{'$search':palabra}},{"contenido":1, "ciudad":1, "fecha":1,"numero":1})
     results = json_util.dumps(results, sort_keys=True, indent=4)
     return results
 
